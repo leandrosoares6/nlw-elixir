@@ -1,3 +1,6 @@
+## Rocketpay app - A project of the week NLW 4 by Rocketseat
+
+This project is part of a personal challenge to implement a Elixir application completely free of installations on the host machine, all via docker.
 ## STEPS TO CREATE DEV ENVIRONMENT:
 
 ### 1 - Create the container manually with the following command:
@@ -12,11 +15,17 @@
 
     `mix phx.new /app/rocketpay --no-webpack --no-html`
 
-### 4 - Run docker-compose:
+### 4 - Exit the container and adjust the permissions of the project directory with your user:
 
-    `docker-compose up -d --build`
+    `sudo chown -R yourusername:yourusergroup server`
 
- **Note:** the parameter **--build** in docker-compose is only needed when making changes to the project's **Dockerfile** or **docker-compose.yaml** file.
+### 5 - Enable execution permission to entrypoint file:
+
+    `chmod +x server/entrypoint.sh`
+
+### 6 - Run docker-compose passing user id and group id with script:
+
+    `sh start.sh`
 
  Enjoy the project and if it helped you, stars are welcome :)
 
