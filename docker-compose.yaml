@@ -7,7 +7,7 @@ services:
     # The build parameters for this container.
     build:
       # Here we define that it should build from the current directory
-      context: server
+      context: server/rocketpay
     environment:
       # Variables to connect to our Postgres server
       PGUSER: postgres
@@ -21,6 +21,7 @@ services:
     volumes:
       - ./server:/app
       - build:/app/rocketpay/_build
+      - deps:/app/rocketpay/deps
     tty: true
     ports:
       # Mapping the port to make the Phoenix app accessible outside of the container
@@ -46,6 +47,7 @@ services:
 
 volumes:
   build: {}
+  deps: {}
 
 # Common network to 'app' and 'db' services
 networks:

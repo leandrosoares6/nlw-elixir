@@ -9,6 +9,13 @@ RUN mix local.hex --force \
 
 WORKDIR /app/rocketpay
 
+ENV MIX_ENV=dev
+
+COPY mix.exs mix.lock ./
+
+RUN mix deps.get
+RUN mix do deps.compile, compile, phx.digest
+
 COPY . .
 
 EXPOSE 4000
