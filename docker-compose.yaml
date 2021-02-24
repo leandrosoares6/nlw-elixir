@@ -8,9 +8,6 @@ services:
     build:
       # Here we define that it should build from the current directory
       context: server
-      args:
-        USER_ID: "${UID:-1000}"
-        GROUP_ID: "${GID:-1000}"
     environment:
       # Variables to connect to our Postgres server
       PGUSER: postgres
@@ -23,6 +20,7 @@ services:
       - nlw-network
     volumes:
       - ./server:/app
+      - build:/app/rocketpay/_build
     tty: true
     ports:
       # Mapping the port to make the Phoenix app accessible outside of the container
@@ -45,6 +43,9 @@ services:
       - ./postgresql:/var/lib/postgresql/data
     networks:
       - nlw-network
+
+volumes:
+  build: {}
 
 # Common network to 'app' and 'db' services
 networks:
